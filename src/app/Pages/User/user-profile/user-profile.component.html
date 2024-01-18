@@ -1,0 +1,138 @@
+<app-navbar></app-navbar>
+<div class="grid grid-cols-5 mt-24 ">
+  <!-- card section -->
+  <div class="col-start-2 col-span-2 ">
+    <h1 class="text-2xl font-medium ml-4">{{user.username}}'s Stories</h1>
+    <div *ngFor="let article of allArticles">
+      <a [routerLink]="['/viewer', article._id]" routerLinkActive="active">
+      <!-- card -->
+      <div class="grid grid-rows-[auto_minmax(auto,_1fr)_50px]  m-3 grid-cols-3  border-blue-600 grid-flow-col rounded-lg" style="border: 1px solid #c1c1c1;">
+      <div class= "col-span-2 row-span-2 rounded-tl-lg " >
+        
+    <div class="grid grid-row-2 h-full pl-4">
+
+      <div class="flex items-center">
+        <img class="w-9 h-9 rounded-full mr-2" 
+              src="https://images.unsplash.com/photo-1694033996901-60322b8740dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" 
+              alt="Avatar of User">
+        <h1 class="text-slate-500">{{article.username}}</h1>
+      </div>
+
+      <div class="flex items-center">
+
+        <h2 class="font-medium text-xl">{{article.ops[0].insert}}</h2>
+      </div>
+  
+
+    </div>      
+          
+    </div>
+
+      <div class="pl-4 pr-4 h-full row col-span-3 flex items-center rounded-b-lg" style="border-top: 1px solid #c1c1c1;">
+        <div class="flex justify-between w-full">
+            <ul class="flex space-x-10" >
+                <i class="fa-regular fa-thumbs-up"></i>
+                <i class="fa-regular fa-share-from-square"></i>
+                <i class="fa-regular fa-comment"></i>
+            </ul>
+            <i class="fa-solid fa-ellipsis"></i>
+          </div>
+      </div>
+    
+      <div class=" row-span-2 rounded-r-lg">
+        <div class="">
+          <img class="w-full object-cover rounded-r-lg"
+          src="https://images.unsplash.com/photo-1694033996901-60322b8740dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80"
+          alt="..." >
+          
+        </div>
+      </div>
+      </div>
+      <!-- Card end -->
+      </a>
+      </div>
+     
+    </div>
+<!-- Card section end -->
+
+<!-- Profile section -->
+  <!-- Card start -->
+  <div class="max-w-sm mx-auto   rounded-lg overflow-hidden shadow-lg col-span-2">
+    <div class="border-b px-4 pb-6">
+        <div class="text-center my-4">
+            <img class="h-32 w-32 rounded-full border-4  mx-auto my-4"
+            src="https://images.unsplash.com/photo-1694033996901-60322b8740dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="">
+            <i (click)="openModal()" class="relative top-2 cursor-pointer fa-regular fa-pen-to-square fa-xl"></i>
+            <div class="py-2">
+                <h3 class="font-bold text-2xl  mb-1">{{user.username}}</h3>
+                <div class="inline-flex  items-center">
+                    <svg class="h-5 w-5  mr-1" fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <path class=""
+                            d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zm11.31-1.41a7 7 0 1 0-9.9 0L12 19.9l4.95-4.95zM12 14a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                    </svg>
+                    New York, NY
+                </div>
+            </div>
+        </div>
+        <div class="flex gap-2 px-2">
+            <button
+                class="flex-1 rounded-full bg-blue-600 dark:bg-blue-800  antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-4 py-2">
+                Follow
+            </button>
+            <button
+                class="flex-1 rounded-full border-2 border-gray-400 dark:border-gray-700 font-semibold text-black  px-4 py-2">
+                Message
+            </button>
+        </div>
+    </div>
+    <div class="px-4 py-4">
+        <div class="flex gap-2 items-center  mb-4">
+            <svg class="h-6 w-6 text-gray-600 dark:text-gray-400" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path class=""
+                    d="M12 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm9 11a1 1 0 0 1-2 0v-2a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v2a1 1 0 0 1-2 0v-2a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v2z" />
+            </svg>
+            <span><strong class="text-black ">12</strong> Followers you know</span>
+        </div>
+        <div class="flex">
+            <div class="flex justify-end mr-2">
+                <img class="border-2 border-white dark:border-gray-800 rounded-full h-10 w-10 -mr-2"
+                    src="https://randomuser.me/api/portraits/men/32.jpg" alt="">
+                <img class="border-2 border-white dark:border-gray-800 rounded-full h-10 w-10 -mr-2"
+                    src="https://randomuser.me/api/portraits/women/31.jpg" alt="">
+                <img class="border-2 border-white dark:border-gray-800 rounded-full h-10 w-10 -mr-2"
+                    src="https://randomuser.me/api/portraits/men/33.jpg" alt="">
+                <img class="border-2 border-white dark:border-gray-800 rounded-full h-10 w-10 -mr-2"
+                    src="https://randomuser.me/api/portraits/women/32.jpg" alt="">
+                <img class="border-2 border-white dark:border-gray-800 rounded-full h-10 w-10 -mr-2"
+                    src="https://randomuser.me/api/portraits/men/44.jpg" alt="">
+                <img class="border-2 border-white dark:border-gray-800 rounded-full h-10 w-10 -mr-2"
+                    src="https://randomuser.me/api/portraits/women/42.jpg" alt="">
+                <span
+                    class="flex items-center justify-center bg-white dark:bg-gray-800 text-sm  text-white font-semibold border-2 border-gray-200 dark:border-gray-700 rounded-full h-10 w-10">
+                    +10
+                </span>
+            </div>
+        </div>
+    </div>
+<!-- Card end -->
+
+    <!-- <div class=" grid-flow-col  m-3  col-start-4 col-span-2">
+        <div class="flex flex-col items-center p-5" style="border:1px solid black;width: inherit;">
+            
+          <div class="flex justify-end">
+
+            <img class="w-40 h-40 rounded-full" 
+                  src="https://images.unsplash.com/photo-1694033996901-60322b8740dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" 
+                  alt="Avatar of User"><i (click)="openModal()" class="relative top-2 cursor-pointer fa-regular fa-pen-to-square fa-xl"></i>
+
+          </div>
+              <h1 class="text-3xl font-medium mt-4">{{user.username}}</h1>
+              
+            <p class="text-gray-400">I am here to solve your probs</p>    
+        </div>
+    </div>
+</div> -->
+<app-my-modal *ngIf="modalService.isOpen$ | async">
+</app-my-modal>

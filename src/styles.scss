@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Source+Code+Pro&display=swap');
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+Body{
+    font-family: poppins,sans-serif;
+}

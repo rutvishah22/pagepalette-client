@@ -1,0 +1,31 @@
+
+  <nav class="px-3 py-3 flex justify-between items-center fixed top-0 w-full bg-white shadow-lg z-10">
+    <h1 routerLink="/home" routerLinkActive="active" class="font-medium text-2xl cursor-pointer">PagePalette</h1>
+    <ul class="flex justify-end space-x-7 align-middle pr-3">
+      <!-- <li routerLink="/home" routerLinkActive="active" class="cursor-pointer">Home</li> -->
+      <li routerLink="/editor" routerLinkActive="active" class="cursor-pointer">Editor</li>
+      <!-- <li routerLink="/login" routerLinkActive="active" class="cursor-pointer" (click)="logout()">Logout</li> -->
+      <li routerLink="/profile" routerLinkActive="active" class="cursor-pointer"><i class="fa-regular fa-user"></i></li>
+      <li (click)="logout()" routerLinkActive="active" class="cursor-pointer">Logout</li>
+    </ul>
+  </nav>
+<!-- <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">PagePalette</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/home" routerLinkActive="active">Home</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/editor" routerLinkActive="active" >Editor</a>
+          </li>
+        </ul>
+       
+      </div>
+    </div>
+  </nav> -->
