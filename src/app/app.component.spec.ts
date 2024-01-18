@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'medium_clone'`, () => {
+  it(`should have as title 'page-palette'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('medium_clone');
+    expect(app.title).toEqual('page-palette');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('medium_clone app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('page-palette app is running!');
   });
 });
