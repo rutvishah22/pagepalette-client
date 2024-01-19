@@ -12,19 +12,20 @@ export class ViewerComponent {
   articleId: String = " ";
   viewer:any;
   viewerContent:any;
-  private quill!: Quill;
   userName: any;
   isDropdownVisible: boolean = false;
 
-  constructor(private route: ActivatedRoute,
-    private apiServices:ApiService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private apiServices:ApiService
+    ) { }
 
   ngOnInit(): void {
     this.viewer = new Quill('#viewer', {
       readOnly: true,
       theme: 'snow',
-     modules: {
-        toolbar: false
+      modules: {
+              toolbar: false
             }
     });
 

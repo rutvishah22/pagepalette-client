@@ -1,5 +1,8 @@
 <!-- <p>editor works!</p> -->
 <app-navbar></app-navbar>
+<div *ngIf="loading" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+  <img src="https://aryan1982.github.io/pagepalette-client/assets/icons/spinner2.gif" alt="loader" class="h-10">
+</div>
 <div class="flex flex-col items-center">
     <div class="mt-16 max-w-[800px]">
       <!--   <div class="chat-input absolute top-0 z-10 left-100 p-4 bg-gray-100 rounded-lg shadow-md transition-transform transform translate-y-full" 

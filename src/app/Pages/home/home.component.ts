@@ -96,7 +96,11 @@ export class HomeComponent {
         console.log(err)
       }
   });
-      
-    
+  }
+
+  editArticle(article:any){
+    console.log(article)
+    localStorage.setItem('articleToEditId',article._id);
+    this.router.navigateByUrl('/editor')
   }
 }

@@ -46,8 +46,8 @@
             
             <div *ngIf="article._id == openedDropdownId" class="absolute right-0 w-48 bg-white border rounded-md shadow-lg">
                 
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Share</a>
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" *ngIf="checkUserOfArticle(article.user)">Edit</a>
+                <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Share</a>
+                <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" *ngIf="checkUserOfArticle(article.user)" (click)="editArticle(article)">Edit</a>
                 <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" *ngIf="checkUserOfArticle(article.user)" (click)="deleteArticle(article._id)">Delete</a>
                 
             </div>

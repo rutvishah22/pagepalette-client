@@ -2,7 +2,7 @@
 <div *ngIf="!viewerContent" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
     <img src="https://aryan1982.github.io/pagepalette-client/assets/icons/spinner2.gif" alt="loader" class="h-10">
 </div>
-<div class="flex flex-col items-center">
+<div *ngIf="viewerContent" class="flex flex-col items-center">
     <div class="w-full max-w-[800px] ">
         <div class="p-4 flex items-center mt-16 " style="border:1px solid #cfcece">
             <img class="w-10 h-10 rounded-full mr-4" 
