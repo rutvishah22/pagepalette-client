@@ -42,7 +42,7 @@ export class LoginComponent {
       next:(response)=>{
         localStorage.setItem('user', JSON.stringify(response));
         localStorage.setItem('jwt', token);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/']);
       }
     })
   }

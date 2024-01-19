@@ -45,7 +45,7 @@ export class EditorComponent implements OnInit,AfterViewInit  {
     this.apiService.submitArticle(data).subscribe({
       next:(response)=>{
         alert('Your article has been uploaded');
-        this.router.navigate(['/home'])
+        this.router.navigate(['/'])
       }
     })
   }

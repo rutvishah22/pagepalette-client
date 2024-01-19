@@ -10,7 +10,7 @@ import { UserProfileComponent } from './Pages/User/user-profile/user-profile.com
 const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'register', component:RegisterComponent},
-  {path:'home', component:HomeComponent},
+  {path:'', component:HomeComponent},
   {path:'editor', component:EditorComponent},
   { path: 'viewer/:id', component: ViewerComponent },
   {path:'profile/:id',component: UserProfileComponent}
