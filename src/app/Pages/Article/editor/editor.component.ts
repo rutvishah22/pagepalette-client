@@ -41,7 +41,7 @@ export class EditorComponent implements OnInit,AfterViewInit  {
   submitArticle(){
     if(this.articleToEditId !== ''){
       const content = this.quill.getContents().ops;
-      this.commonApiService.postRequest('article/updateArticle',{articleId:this.articleToEditId,content}).subscribe({
+      this.commonApiService.postRequest('article/updateArticle',{articleId:this.articleToEditId,ops:content}).subscribe({
         next:(res)=>{
           alert(res.message);
           localStorage.removeItem('articleToEditId');

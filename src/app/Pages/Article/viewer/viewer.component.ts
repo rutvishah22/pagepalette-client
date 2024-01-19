@@ -11,9 +11,9 @@ import { ApiService } from 'src/app/services/api.service';
 export class ViewerComponent {
   articleId: String = " ";
   viewer:any;
-  viewerContent:any;
   userName: any;
   isDropdownVisible: boolean = false;
+  loading: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,10 +38,12 @@ export class ViewerComponent {
   }
 
   getArticle(id:any){
+      this.loading = true;
       this.apiServices.postRequest('article/getArticleById', {"id":id}).subscribe((article)=>{
-      this.viewerContent = article.ops;
-      this.viewer.setContents(this.viewerContent)
-      this.userName = article.username
+        console.log(article)
+        this.viewer.setContents(article.ops)
+        this.loading = false;
+        this.userName = article.username
       })
   }
 
