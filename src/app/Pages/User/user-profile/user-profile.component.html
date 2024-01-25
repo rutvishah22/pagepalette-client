@@ -61,8 +61,14 @@
     <div class="border-b px-4 pb-6">
         <div class="text-center my-4">
             <img class="h-32 w-32 rounded-full border-4  mx-auto my-4"
-            src="https://images.unsplash.com/photo-1694033996901-60322b8740dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="">
-            <i (click)="openModal()" class="relative top-2 cursor-pointer fa-regular fa-pen-to-square fa-xl"></i>
+            src="{{user.profileImage}}" alt="">
+            <!-- <img class="h-32 w-32 rounded-full border-4  mx-auto my-4"
+            src="https://images.unsplash.com/photo-1694033996901-60322b8740dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt=""> -->
+            <!-- <i (click)="openModal()" class="relative top-2 cursor-pointer fa-regular fa-pen-to-square fa-xl"></i> -->
+            <div>
+                <input type="file" (change)="onFileSelected($event)" />
+                <button (click)="onUpload()">Upload Image</button>
+              </div>
             <div class="py-2">
                 <h3 class="font-bold text-2xl  mb-1">{{user.username}}</h3>
                 <div class="inline-flex  items-center">

@@ -7,11 +7,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
+  user: any;
   constructor(
     private router:Router
-  ){
+  ){}
 
+
+  ngOnInit(){
+    this.user = JSON.parse(localStorage.getItem('user') || '{}');
+    console.log(this.user);
   }
+
   logout(){
     localStorage.removeItem('user');
     this.router.navigateByUrl('/login')

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -17,6 +17,14 @@ export class ApiService {
 
   postRequest(url:string,data:any): Observable<any>{
     return this.http.post(`${this.apiUrl}/${url}`, data)
+  }
+
+  postRequestWithToken(endpoint: string, data: any, token: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+    });
+
+    return this.http.post(`${this.apiUrl}/${endpoint}`, data, { headers });
   }
   
   getAllUserData(): Observable<any> {

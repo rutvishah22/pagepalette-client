@@ -5,7 +5,7 @@
       <!-- <li routerLink="/home" routerLinkActive="active" class="cursor-pointer">Home</li> -->
       <li routerLink="/editor" routerLinkActive="active" class="cursor-pointer">Editor</li>
       <!-- <li routerLink="/login" routerLinkActive="active" class="cursor-pointer" (click)="logout()">Logout</li> -->
-      <li routerLink="/profile" routerLinkActive="active" class="cursor-pointer"><i class="fa-regular fa-user"></i></li>
+      <li routerLink="/profile/{{user.userId}}" routerLinkActive="active" class="cursor-pointer"><i class="fa-regular fa-user"></i></li>
       <li (click)="logout()" routerLinkActive="active" class="cursor-pointer">Logout</li>
     </ul>
   </nav>

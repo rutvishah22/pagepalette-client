@@ -11,15 +11,18 @@ import { EditorComponent } from '../../Article/editor/editor.component';
 })
 export class UserProfileComponent {
   allArticles: any;
-  userId: any;
+  userId: any;  
   user: any;
+  selectedImage!: File;
+  authToken: any;
+  base64Image!: string;
 
   constructor(private route: ActivatedRoute,
-              private ApiServices:ApiService,
+              private commonApiService:ApiService,
               public modalService:ModalService){}
 
   ngOnInit (){
-    const loginUser = JSON.parse(localStorage.getItem('user') || '{}');
+    this.authToken = localStorage.getItem('jwt');
    
 
     this.route.params.subscribe(params => {
@@ -30,9 +33,10 @@ export class UserProfileComponent {
   }
 
   getUserByUserId(userId:any){
-    this.ApiServices.getUserByUserId({userId:userId}).subscribe({
+    this.commonApiService.getUserByUserId({userId:userId}).subscribe({
       next:(res)=>{
         this.user = res;
+        this.getBase64Image();
       }
     })
 
@@ -40,7 +44,7 @@ export class UserProfileComponent {
   }
 
   getArticleByUserId(userId:any){
-    this.ApiServices.getArticleByUserId({userId:userId}).subscribe({
+    this.commonApiService.getArticleByUserId({userId:userId}).subscribe({
       next:(res)=>{
         this.allArticles = res;
       }
@@ -48,7 +52,45 @@ export class UserProfileComponent {
   }
   
   openModal() {
-    this.modalService.openModal();
+    // this.modalService.openModal();
+
+  }
+
+  onFileSelected(event: any): void {
+    this.selectedImage = event.target.files[0];
+  }
+
+  onUpload(): void {
+    if (this.selectedImage) {
+      const reader = new FileReader();
+  
+      reader.onload = (event) => {
+        const base64Image = event.target?.result as string;
+        this.commonApiService.postRequestWithToken('user/uploadProfile', { image: base64Image }, this.authToken)
+          .subscribe({
+            next: (res) => {
+              this.getUserByUserId(this.userId)
+            }
+          });
+      };
+      reader.readAsDataURL(this.selectedImage);
+    }
+  }
+  
+
+  getBase64Image(): void {
+    console.log(this.user.profileImage.data.data.toString('base64'))
+    if (this.user && this.user.profileImage && this.user.profileImage.data) {
+      try {
+        const buffer = this.user.profileImage.data.data;
+        this.base64Image = 'data:' + this.user.profileImage.contentType + ';base64,' + buffer.toString('base64');
+        console.log(this.base64Image)
+      } catch (error) {
+        console.error('Error converting buffer to Base64:', error);
+      }
+    } else {
+      console.warn('Profile image data is undefined or invalid.');
+    }
   }
 
 }
