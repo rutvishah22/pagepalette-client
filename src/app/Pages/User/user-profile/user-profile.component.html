@@ -7,7 +7,7 @@
     <div class="max-w-screen-md w-full p-4">
       <div class="profile-section grid grid-cols-[auto,1fr] gap-4 w-full">
         <div class="min-w-max p-4 max-md:w-32">
-            <img class="max-md:h-20 max-md:w-20 h-40 w-40 rounded-full border-4 border-white mx-auto md:mx-0" src="{{user.profileImage}}" alt="Profile Image">
+            <img class="max-md:h-20 max-md:w-20 h-40 w-40 rounded-full border-4 border-white mx-auto md:mx-0" src="{{user.profileImage ? user.profileImage : 'https://aryan1982.github.io/pagepalette-client/assets/icons/avatar.png'}}" alt="Profile Image">
         </div>
         <div class="w-full p-4 max-sm:pl-0 col-span-2 md:col-span-1 col-start-2 grid-rows-2 grid">
           <div class="row-start-1">
@@ -31,11 +31,11 @@
 
             <div class="mt-4 max-sm:col-span-3 max-sm:col-start-1 max-sm:row-start-2" >
               <!-- Media query to move the description below on smaller screens -->
-              <span class="text-sm ">
+              <span class="text-sm " *ngIf="user.bio">
                 {{ user.bio.length > 100 ? user.bio.slice(0, 100) + '...' : user.bio }}
               </span>
               <!-- Add "See More" link if the description is longer -->
-              <a *ngIf="user.bio.length > 100" class="text-blue-500 cursor-pointer">See More</a>
+              <a *ngIf="user.bio?.length > 100" class="text-blue-500 cursor-pointer">See More</a>
             </div>
           </div>
         </div>
@@ -75,8 +75,8 @@
                     <div class="col-span-2 row-span-2 rounded-tl-lg">
                         <div class="flex flex-col h-40 justify-around p-4 max-h-40 cursor-pointer" [routerLink]="['/viewer', article._id]">
                             <div class="flex items-center">
-                                <img *ngIf="user.profileImage == 'default.jpg'" class="w-12 h-12 rounded-full mr-2" src="https://images.unsplash.com/photo-1694033996901-60322b8740dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Avatar of User">
-                                <img *ngIf="user.profileImage !== 'default.jpg'" class="w-12 h-12 rounded-full mr-2" src="{{user.profileImage}}" alt="Avatar of User">
+                                <img *ngIf="!user.profileImage" class="w-12 h-12 rounded-full mr-2" src="{{user.profileImage? user.profileImage : 'https://aryan1982.github.io/pagepalette-client/assets/icons/avatar.png'}}" alt="Avatar of User">
+                                <!-- <img *ngIf="user.profileImage !== 'default.jpg'" class="w-12 h-12 rounded-full mr-2" src="{{user.profileImage}}" alt="Avatar of User"> -->
                                 <h1 class="text-slate-500 max-sm:text-lg text-md">{{article.user.username}}</h1>
                             </div>
                             <div class="flex items-center article-title">

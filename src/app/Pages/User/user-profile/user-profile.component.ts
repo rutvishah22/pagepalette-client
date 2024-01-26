@@ -44,7 +44,7 @@ ngOnInit() {
 }
 
   getUserByUserId(userId:any){
-    this.commonApiService.getUserByUserId({userId:userId}).subscribe({
+    this.commonApiService.postRequest('user/getUserByUserId',{userId:userId}).subscribe({
       next:(res)=>{
         this.user = res;
         // this.getBase64Image();
@@ -56,8 +56,9 @@ ngOnInit() {
 
 
   getArticleByUserId(userId:any){
-    this.commonApiService.getArticleByUserId({userId:userId}).subscribe({
+    this.commonApiService.postRequest('article/articleByUserId',{userId:userId}).subscribe({
       next:(res)=>{
+        console.log(res)
         this.allArticles = res;
         const firstImagesForEachArticle = this.allArticles.map((article:any) => {
           const firstImage = this.getFirstImageFromOps(article.ops);

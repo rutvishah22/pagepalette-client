@@ -14,7 +14,7 @@ export class RegisterComponent {
 
   constructor(
     private formBuilder:FormBuilder, 
-    private apiService:ApiService,
+    private commonApiServices:ApiService,
     private router:Router
     ){}
 
@@ -50,37 +50,30 @@ export class RegisterComponent {
       email: this.registerForm.value.email,
       password: this.registerForm.value.password
     };
-    this.apiService.postRequest('auth/register',registerData).subscribe({
+    this.commonApiServices.postRequest('auth/register',registerData).subscribe({
       next:(response)=>{
-        console.log(response)
-        if(response.message == 'success'){
-          alert("user Regestered Succesfully")
-          this.router.navigate(['/login']);
+        if(response.loginStatus == 'success'){
+          alert("user Regestered Succesfully");
+          this.getLoginUser(response.Authorization)
+          this.router.navigate(['/']);
         }
         else{
-
-          alert(response.message);
+          alert(response.errors);
         }
       },
       error:(error)=>{
         console.log(error);
       }
     })
-    // this.apiService.registerUser(this.registerForm.value).subscribe({
-    //   next:(response)=>{
-        
-    //     if(response.message == 'success'){
-    //       alert("user Regestered Succesfully")
-    //       this.router.navigate(['/login']);
-    //     }
-    //     else{
+  }
 
-    //       alert(response.message);
-    //     }
-    //   },
-    //   error:(error)=>{
-    //     console.log(error);
-    //   }
-    // })    
+  getLoginUser(token:any){
+    this.commonApiServices.postRequest('user/getLoginUser',{'token':token}).subscribe({
+      next:(response)=>{
+        localStorage.setItem('user', JSON.stringify(response));
+        localStorage.setItem('jwt', token);
+        this.router.navigate(['/']);
+      }
+    })
   }
 }
