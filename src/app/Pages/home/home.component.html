@@ -14,10 +14,10 @@
     <div class="flex flex-col h-40 justify-around p-4 max-h-40 cursor-pointer" [routerLink]="['/viewer', article._id]">
 
       <div class="flex items-center">
-        <img *ngIf="article.user.profileImage == 'default.jpg'" class="w-9 h-9 rounded-full mr-2" 
+        <img *ngIf="article.user.profileImage == 'default.jpg'" class="w-12 h-12 rounded-full mr-2" 
               src="https://images.unsplash.com/photo-1694033996901-60322b8740dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" 
               alt="Avatar of User">
-        <img *ngIf="article.user.profileImage !== 'default.jpg'" class="w-9 h-9 rounded-full mr-2" 
+        <img *ngIf="article.user.profileImage !== 'default.jpg'" class="w-12 h-12 rounded-full mr-2" 
               src="{{article.user.profileImage}}" 
               alt="Avatar of User">
         <h1 class="text-slate-500 max-sm:text-lg text-md">{{article.username}}</h1>
@@ -50,8 +50,8 @@
             <div *ngIf="article._id == openedDropdownId" class="absolute right-0 w-48 bg-white border rounded-md shadow-lg">
                 
                 <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Share</a>
-                <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" *ngIf="checkUserOfArticle(article.user)" (click)="editArticle(article)">Edit</a>
-                <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" *ngIf="checkUserOfArticle(article.user)" (click)="deleteArticle(article._id)">Delete</a>
+                <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" *ngIf="checkUserOfArticle(article.user._id)" (click)="editArticle(article)">Edit</a>
+                <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" *ngIf="checkUserOfArticle(article.user._id)" (click)="deleteArticle(article._id)">Delete</a>
                 
             </div>
          </div>

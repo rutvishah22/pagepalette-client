@@ -14,6 +14,7 @@ export class ViewerComponent {
   userName: any;
   isDropdownVisible: boolean = false;
   loading: boolean = false;
+  article: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,8 +32,6 @@ export class ViewerComponent {
 
     this.route.params.subscribe(params => {
       this.articleId = params['id'];
-      // Fetch article details using the articleId
-      console.log(this.articleId)
       this.getArticle(this.articleId);
     });
   }
@@ -43,7 +42,7 @@ export class ViewerComponent {
         console.log(article)
         this.viewer.setContents(article.ops)
         this.loading = false;
-        this.userName = article.username
+        this.article = article
       })
   }
 
