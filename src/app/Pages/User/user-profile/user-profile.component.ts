@@ -103,7 +103,7 @@ ngOnInit() {
     this.editProfileForm = this.formBuilder.group({
       username: [this.user.username, [Validators.required]],
       profileImage: [this.user.profileImage, [Validators.required]],
-      bio: ['']
+      bio: [this.user.bio]
     });
   }
   
