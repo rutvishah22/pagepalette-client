@@ -64,9 +64,9 @@
       <div class="h-full d-flex items-center row-span-2 justify-center" >
         <div class="h-full d-flex items-center justify-center cursor-pointer" style="display: flex !important;"  [routerLink]="['/viewer', article._id]">
      
-          <img *ngIf="firstImages[i].firstImage" class="object-cover max-h-[200px] rounded-tr-lg max-sm:mr-2 max-sm:rounded-none max-sm:shadow-md max-sm:h-[50%] sm:h-[100%]"
-          src="{{firstImages[i].firstImage}}"
-          alt="..." >
+          <!-- <img *ngIf="firstImages[i].firstImage" class="object-cover max-h-[200px] rounded-tr-lg max-sm:mr-2 max-sm:rounded-none max-sm:shadow-md max-sm:h-[50%] sm:h-[100%]"
+          src="{{firstImages[i].firstImage || ''}}"
+          alt="..." > -->
           
         </div>
       </div>

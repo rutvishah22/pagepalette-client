@@ -37,14 +37,14 @@ export class HomeComponent {
         this.allArticles = res;
         // console.log(this.allArticles);
 
-        const firstImagesForEachArticle = this.allArticles.map((article:any) => {
-          const firstImage = this.getFirstImageFromOps(article.ops);
-          return { ...article, firstImage };
-        });
+        // const firstImagesForEachArticle = this.allArticles.map((article:any) => {
+        //   const firstImage = this.getFirstImageFromOps(article.ops);
+        //   return { ...article, firstImage };
+        // });
 
         // Log the result
         // console.log('First images for each article:', firstImagesForEachArticle);
-        this.firstImages = firstImagesForEachArticle; 
+        // this.firstImages = firstImagesForEachArticle; 
       }
     });
   }
