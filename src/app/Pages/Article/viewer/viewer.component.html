@@ -1,8 +1,8 @@
 <app-navbar></app-navbar>
-<div *ngIf="loading" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+<div *ngIf="article == undefined" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
     <img src="https://aryan1982.github.io/pagepalette-client/assets/icons/spinner2.gif" alt="loading" class="h-10">
 </div>
-<div [class.highlight]="!loading" class="flex flex-col items-center">
+<div [class.invisible]="article == undefined" class="flex flex-col items-center">
     <div class="w-full max-w-[800px] ">
         <div class="p-4 flex items-center mt-16 " style="border:1px solid #cfcece">
             <div class="flex items-center cursor-pointer" routerLink="/profile/{{article.user}}">

@@ -13,7 +13,6 @@ export class ViewerComponent {
   viewer:any;
   userName: any;
   isDropdownVisible: boolean = false;
-  loading: boolean = false;
   article: any;
 
   constructor(
@@ -37,11 +36,9 @@ export class ViewerComponent {
   }
 
   getArticle(id:any){
-      this.loading = true;
       this.apiServices.postRequest('article/getArticleById', {"id":id}).subscribe((article)=>{
         console.log(article)
         this.viewer.setContents(article.ops)
-        this.loading = false;
         this.article = article
       })
   }

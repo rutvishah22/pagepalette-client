@@ -7,17 +7,17 @@
     </div>
     <div *ngFor="let article of allArticles; let i = index; ">
       <!-- card -->
-      <div class="grid grid-rows-[auto_minmax(auto,_1fr)_50px]  m-3 grid-cols-3  border-blue-600 grid-flow-col rounded-lg" style="border: 1px solid #c1c1c1;">
+      <div class="grid grid-rows-[auto_minmax(auto,_1fr)_50px]  m-3 grid-cols-3  border-blue-600 grid-flow-col rounded-lg lg:w-[800px]" style="border: 1px solid #c1c1c1;">
         <!-- <a [routerLink]="['/viewer', article._id]" routerLinkActive="active"> -->
         <div class= "col-span-2 row-span-2 rounded-tl-lg " >
         
     <div class="flex flex-col h-40 justify-around p-4 max-h-40 cursor-pointer" [routerLink]="['/viewer', article._id]">
 
       <div class="flex items-center">
-        <img *ngIf="article.user.profileImage == 'default.jpg'" class="w-12 h-12 rounded-full mr-2" 
-              src="https://images.unsplash.com/photo-1694033996901-60322b8740dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" 
+        <img *ngIf="article.user.profileImage == 'default.jpg' || !article.user.profileImage" class="w-12 h-12 rounded-full mr-2" 
+              src="https://aryan1982.github.io/pagepalette-client/assets/icons/avatar.png" 
               alt="Avatar of User">
-        <img *ngIf="article.user.profileImage !== 'default.jpg'" class="w-12 h-12 rounded-full mr-2" 
+        <img *ngIf="article.user.profileImage && article.user.profileImage !== 'default.jpg'" class="w-12 h-12 rounded-full mr-2" 
               src="{{article.user.profileImage}}" 
               alt="Avatar of User">
         <h1 class="text-slate-500 max-sm:text-lg text-md">{{article.username}}</h1>
@@ -64,9 +64,9 @@
       <div class="h-full d-flex items-center row-span-2 justify-center" >
         <div class="h-full d-flex items-center justify-center cursor-pointer" style="display: flex !important;"  [routerLink]="['/viewer', article._id]">
      
-          <!-- <img *ngIf="firstImages[i].firstImage" class="object-cover max-h-[200px] rounded-tr-lg max-sm:mr-2 max-sm:rounded-none max-sm:shadow-md max-sm:h-[50%] sm:h-[100%]"
+          <img *ngIf="firstImages[i].firstImage" class="object-cover max-h-[200px] rounded-tr-lg max-sm:mr-2 max-sm:rounded-none max-sm:shadow-md max-sm:h-[50%] sm:h-[100%]"
           src="{{firstImages[i].firstImage || ''}}"
-          alt="..." > -->
+          alt="..." >
           
         </div>
       </div>

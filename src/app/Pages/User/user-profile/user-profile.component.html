@@ -5,9 +5,14 @@
 <div *ngIf="!loading" class="w-full h-screen flex justify-center mt-8">
   <div class="w-full h-screen flex justify-center mt-8">
     <div class="max-w-screen-md w-full p-4">
-      <div class="profile-section grid grid-cols-[auto,1fr] gap-4 w-full">
-        <div class="min-w-max p-4 max-md:w-32">
-            <img class="max-md:h-20 max-md:w-20 h-40 w-40 rounded-full border-4 border-white mx-auto md:mx-0" src="{{user.profileImage ? user.profileImage : 'https://aryan1982.github.io/pagepalette-client/assets/icons/avatar.png'}}" alt="Profile Image">
+      <div class="profile-section grid grid-cols-[auto,1fr] gap-4 w-full ">
+        <div class="min-w-max max-sm:-m-5 max-sm:mt-1 p-4 max-md:w-32 flex flex-col items-center">
+            <img class="max-md:h-20 max-md:w-20 h-40 w-40 rounded-full border-4 border-white mx-auto md:mx-0" src="{{!user.profileImage || user.profileImage == 'default.jpg' ? 'https://aryan1982.github.io/pagepalette-client/assets/icons/avatar.png' : user.profileImage  }}" alt="Profile Image">
+            <!-- <img class="max-md:h-20 max-md:w-20 h-40 w-40 rounded-full border-4 border-white mx-auto md:mx-0" src="{{user.profileImage}}" alt="Profile Image"> -->
+            <button class="bg-gray-200 font-medium px-3 py-1 w-full mt-2 rounded-md md:invisible" *ngIf="user._id == loginUser.userId " (click)="editProfile()">Edit</button>
+            <button class="bg-gray-200 font-medium px-3 py-1 w-full mt-2 rounded-md md:invisible" *ngIf="user._id !== loginUser.userId " >Follow</button>
+            <button class="bg-gray-200 font-medium px-3 py-1 w-full mt-2 rounded-md md:invisible" *ngIf="user._id !== loginUser.userId ">Message</button>
+
         </div>
         <div class="w-full p-4 max-sm:pl-0 col-span-2 md:col-span-1 col-start-2 grid-rows-2 grid">
           <div class="row-start-1">
@@ -15,14 +20,14 @@
             <div class="flex justify-between items-center">
               <h3 class="font-bold text-2xl mb-2">{{user.username}}</h3>
               <div class="flex">
-                <button class="bg-blue-500 text-white px-4 py-1 rounded-md" *ngIf="user._id !== loginUser.userId ">Follow</button>
-              <button class="bg-blue-500 text-white px-4 py-1 rounded-md" *ngIf="user._id == loginUser.userId " (click)="editProfile()">Edit</button>
+                <button class="bg-blue-500 text-white px-4 py-1 rounded-md max-md:invisible" *ngIf="user._id !== loginUser.userId ">Follow</button>
+              <button class="bg-blue-500 text-white px-4 py-1 rounded-md max-md:invisible" *ngIf="user._id == loginUser.userId " (click)="editProfile()">Edit</button>
               </div>
             </div>
-            <div class="flex space-x-5 mt-4 max-sm:w-[80%]">
-              <span class="max-sm:text-sm"><strong>Followers:</strong> 123</span>
-              <span class="max-sm:text-sm"><strong>Following:</strong> 123</span>
-              <span class="max-sm:text-sm"><strong>Articles:</strong> 13</span>
+            <div class="flex space-x-5 md:mt-4 max-sm:w-[80%]">
+              <span class="max-sm:text-sm text-center"><strong>Followers</strong> 123</span>
+              <span class="max-sm:text-sm text-center"><strong>Following</strong> 123</span>
+              <span class="max-sm:text-sm text-center"><strong>Articles</strong> 13</span>
               <!-- Add more profile details here -->
             </div>
           </div>
@@ -75,7 +80,7 @@
                     <div class="col-span-2 row-span-2 rounded-tl-lg">
                         <div class="flex flex-col h-40 justify-around p-4 max-h-40 cursor-pointer" [routerLink]="['/viewer', article._id]">
                             <div class="flex items-center">
-                                <img *ngIf="!user.profileImage" class="w-12 h-12 rounded-full mr-2" src="{{user.profileImage? user.profileImage : 'https://aryan1982.github.io/pagepalette-client/assets/icons/avatar.png'}}" alt="Avatar of User">
+                                <img class="w-12 h-12 rounded-full mr-2" src="{{!user.profileImage || user.profileImage == 'default.jpg' ? 'https://aryan1982.github.io/pagepalette-client/assets/icons/avatar.png' : user.profileImage  }}" alt="Avatar of User">
                                 <!-- <img *ngIf="user.profileImage !== 'default.jpg'" class="w-12 h-12 rounded-full mr-2" src="{{user.profileImage}}" alt="Avatar of User"> -->
                                 <h1 class="text-slate-500 max-sm:text-lg text-md">{{article.user.username}}</h1>
                             </div>
