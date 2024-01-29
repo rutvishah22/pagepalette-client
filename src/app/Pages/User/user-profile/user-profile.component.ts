@@ -58,7 +58,6 @@ ngOnInit() {
   getArticleByUserId(userId:any){
     this.commonApiService.postRequest('article/articleByUserId',{userId:userId}).subscribe({
       next:(res)=>{
-        console.log(res)
         this.allArticles = res;
         const firstImagesForEachArticle = this.allArticles.map((article:any) => {
           const firstImage = this.getFirstImageFromOps(article.ops);

@@ -96,7 +96,7 @@ export class EditorComponent implements OnInit,AfterViewInit  {
 
   getArticle(id:any){
     this.loading = true;
-    this.commonApiService.postRequest('article/getArticleById', {"id":id}).subscribe((article)=>{
+      this.commonApiService.postRequest('article/getArticleById', {"id":id}).subscribe((article)=>{
       this.quill.setContents(article.ops);
       this.loading = false;
     })

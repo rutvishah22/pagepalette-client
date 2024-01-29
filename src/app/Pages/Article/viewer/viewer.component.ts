@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Quill from 'quill';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -17,7 +17,9 @@ export class ViewerComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private apiServices:ApiService
+    private apiServices:ApiService,
+    public router: Router,
+    private commonApiService:ApiService
     ) { }
 
   ngOnInit(): void {
@@ -37,7 +39,6 @@ export class ViewerComponent {
 
   getArticle(id:any){
       this.apiServices.postRequest('article/getArticleById', {"id":id}).subscribe((article)=>{
-        console.log(article)
         this.viewer.setContents(article.ops)
         this.article = article
       })
@@ -45,6 +46,20 @@ export class ViewerComponent {
 
   toggleDropdown(): void {
      this.isDropdownVisible = !this.isDropdownVisible;
+  }
+
+  editArticle(articleId:any){
+    localStorage.setItem('articleToEditId',articleId);
+    this.router.navigateByUrl('/editor')
+  }
+
+  deleteArticle(articleId:number){
+    this.commonApiService.postRequest('article/deleteArticle', {id: articleId}).subscribe({
+      next:(res) => {
+        alert(res.message)
+        this.getArticle(this.articleId);
+      }
+  });
   }
 }
 

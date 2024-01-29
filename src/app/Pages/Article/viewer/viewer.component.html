@@ -5,11 +5,11 @@
 <div [class.invisible]="article == undefined" class="flex flex-col items-center">
     <div class="w-full max-w-[800px] ">
         <div class="p-4 flex items-center mt-16 " style="border:1px solid #cfcece">
-            <div class="flex items-center cursor-pointer" routerLink="/profile/{{article.user}}">
+            <div class="flex items-center cursor-pointer" routerLink="/profile/{{article.user._id}}">
 
-                <img class="w-10 h-10 rounded-full mr-4" 
-                src="https://images.unsplash.com/photo-1694033996901-60322b8740dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" 
-                alt="Avatar of User">
+                <img class="w-10 h-10 rounded-full mr-4" *ngIf="article.user.profileImage == 'default.jpg' || !article.user.profileImage" src="https://aryan1982.github.io/pagepalette-client/assets/icons/avatar.png">
+                <img class="w-10 h-10 rounded-full mr-4" *ngIf="article.user.profileImage && article.user.profileImage !== 'default.jpg'" src="{{article.user.profileImage}}">
+
                 <h1 class="text-slate-500">{{article.username}}</h1>
             </div>
             <div class="relative ml-auto z-10">
@@ -19,8 +19,8 @@
             <!-- Dropdown content -->
             <div *ngIf="isDropdownVisible" class="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg">
                 <!-- Dropdown items go here -->
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Delete
+                <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" (click)="editArticle(article._id)">Edit</a>
+                <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" (click)="deleteArticle(article._id)">Delete
                 </a>
                 <!-- Add more items as needed -->
             </div>

@@ -35,7 +35,6 @@ export class HomeComponent {
     this.commonApiService.getAllArticles(this.loginUser).subscribe({
       next: (res) => {
         this.allArticles = res;
-        // console.log(this.allArticles);
 
         const firstImagesForEachArticle = this.allArticles.map((article:any) => {
           const firstImage = this.getFirstImageFromOps(article.ops);
@@ -86,18 +85,13 @@ export class HomeComponent {
   deleteArticle(articleId:number){
     this.commonApiService.postRequest('article/deleteArticle', {id: articleId}).subscribe({
       next:(res) => {
-        // console.log(res);
         alert(res.message)
         this.getArticles();
-      },
-      error:(err) =>{
-        console.log(err)
       }
   });
   }
 
   editArticle(article:any){
-    console.log(article)
     localStorage.setItem('articleToEditId',article._id);
     this.router.navigateByUrl('/editor')
   }

@@ -15,7 +15,6 @@ export class NavbarComponent {
 
   ngOnInit(){
     this.user = JSON.parse(localStorage.getItem('user') || '{}');
-    console.log(this.user);
   }
 
   logout(){

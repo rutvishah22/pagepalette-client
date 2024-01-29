@@ -9,7 +9,6 @@ import { ModalService } from 'src/app/services/modalServices/modal.service';
 export class MyModalComponent {
   constructor(public modalService:ModalService){}
   closeModal(){
-    console.log("heyy")
    this.modalService.closeModal();
   }
 }

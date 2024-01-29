@@ -26,7 +26,6 @@ export class LoginComponent {
     this.commonApiServices.postRequest('auth/login',this.loginForm.value).subscribe({
       next: (response) => {
         const token = response.Authorization
-        console.log(response)
         if(response.loginStatus == 'success'){
           this.getLoginUser(token);
         }

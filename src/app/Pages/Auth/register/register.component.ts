@@ -44,7 +44,6 @@ export class RegisterComponent {
   }
 
   onRegister(){
-    console.log(this.registerForm.value)
     let registerData = {
       username: this.registerForm.value.userName,
       email: this.registerForm.value.email,
@@ -60,9 +59,6 @@ export class RegisterComponent {
         else{
           alert(response.errors);
         }
-      },
-      error:(error)=>{
-        console.log(error);
       }
     })
   }

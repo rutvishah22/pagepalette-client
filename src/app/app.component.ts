@@ -23,7 +23,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   sendMessage() {
-    // console.log('\n');
     const payload = { message: this.userMessage };
     
     // Push the user's message to chatMessages
@@ -47,7 +46,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.eventSource.onmessage = (event) => {
       this.ngZone.run(() => {
-          console.log(event.data);
           const newContent: string = event.data.trim();
           const newLines: string[] = newContent.split('\n');
   
