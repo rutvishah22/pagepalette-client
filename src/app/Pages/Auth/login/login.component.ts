@@ -27,7 +27,8 @@ export class LoginComponent {
       next: (response) => {
         const token = response.Authorization
         if(response.loginStatus == 'success'){
-          this.getLoginUser(token);
+          localStorage.setItem('jwt', token);
+          this.getLoginUser();
         }
         if(response.loginStatus == 'failed'){
           alert('incorrect username or password')
@@ -36,11 +37,10 @@ export class LoginComponent {
     })
   }
 
-  getLoginUser(token:any){
+  getLoginUser(){
     this.commonApiServices.getRequest('user/getLoginUser').subscribe({
       next:(response)=>{
         localStorage.setItem('user', JSON.stringify(response));
-        localStorage.setItem('jwt', token);
         this.router.navigate(['/']);
       }
     })
