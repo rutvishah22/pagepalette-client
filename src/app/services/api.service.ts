@@ -19,13 +19,13 @@ export class ApiService {
     return this.http.post(`${this.apiUrl}/${url}`, data)
   }
 
-  postRequestWithToken(endpoint: string, data: any, token: string): Observable<any> {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
-    });
+  // postRequestWithToken(endpoint: string, data: any, token: string): Observable<any> {
+  //   const headers = new HttpHeaders({
+  //     'Authorization': `Bearer ${token}`,
+  //   });
 
-    return this.http.post(`${this.apiUrl}/${endpoint}`, data, { headers });
-  }
+  //   return this.http.post(`${this.apiUrl}/${endpoint}`, data, { headers });
+  // }
   
   getAllUserData(): Observable<any> {
     return this.http.get(`${this.apiUrl}/allusers`);

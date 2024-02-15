@@ -15,7 +15,7 @@ export class UserProfileComponent {
   userId: any;  
   user: any;
   selectedImage!: File;
-  authToken: any;
+  // authToken: any;
   base64Image!: string;
   openedDropdownId: number= 0;
   loginUser: any;
@@ -34,7 +34,7 @@ export class UserProfileComponent {
 
 ngOnInit() {
   this.loginUser = JSON.parse(localStorage.getItem('user') || '{}');
-  this.authToken = localStorage.getItem('jwt');
+  // this.authToken = localStorage.getItem('jwt');
               
   this.route.params.subscribe(params => {
   this.userId = params['id'];
@@ -118,7 +118,7 @@ ngOnInit() {
       profileImage: this.editProfileForm.get('profileImage')?.value,
       bio: this.editProfileForm.get('bio')?.value,
     };
-    this.commonApiService.postRequestWithToken('user/editProfile', formData, this.authToken)
+    this.commonApiService.postRequest('user/editProfile', formData)
           .subscribe({
             next: (res) => {
               this.getUserByUserId(this.userId)
@@ -138,7 +138,7 @@ ngOnInit() {
   
       reader.onload = (event) => {
         const base64Image = event.target?.result as string;
-        this.commonApiService.postRequestWithToken('user/uploadProfile', { image: base64Image }, this.authToken)
+        this.commonApiService.postRequest('user/uploadProfile', { image: base64Image })
           .subscribe({
             next: (res) => {
               this.getUserByUserId(this.userId)
@@ -178,5 +178,16 @@ ngOnInit() {
       error:(err) =>{
       }
   });
+  }
+
+  followUser(userToFollowId:Number){
+    if(this.user.isFollowed == true){
+      this.user.isFollowed = false;
+    }else{
+      this.user.isFollowed = true;
+    }
+    this.commonApiService.postRequest('user/followUser',{userToFollowId:userToFollowId}).subscribe((res:any)=>{
+
+    })
   }
 }

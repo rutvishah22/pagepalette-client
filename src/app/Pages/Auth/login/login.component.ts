@@ -37,7 +37,7 @@ export class LoginComponent {
   }
 
   getLoginUser(token:any){
-    this.commonApiServices.postRequest('user/getLoginUser',{'token':token}).subscribe({
+    this.commonApiServices.getRequest('user/getLoginUser').subscribe({
       next:(response)=>{
         localStorage.setItem('user', JSON.stringify(response));
         localStorage.setItem('jwt', token);

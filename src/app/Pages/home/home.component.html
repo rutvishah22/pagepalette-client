@@ -37,7 +37,8 @@
 
 
           <ul class="flex space-x-10" >
-              <i class="fa-regular fa-thumbs-up"></i>
+              <i class="fa-regular fa-thumbs-up" (click)="likeArticle(article)" *ngIf="!article.isLiked"></i>
+              <i class="fa-solid fa-thumbs-up text-blue-700" (click)="likeArticle(article)" *ngIf="article.isLiked"></i>
               <i class="fa-regular fa-share-from-square"></i>
               <i class="fa-regular fa-comment"></i>
           </ul>

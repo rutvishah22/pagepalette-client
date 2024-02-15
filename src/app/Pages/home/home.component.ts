@@ -24,7 +24,7 @@ export class HomeComponent {
     this.loginUser = JSON.parse(localStorage.getItem('user') || '{}');
     if(this.loginUser.userId){
       this.getArticles()
-      this.getUsers()
+      // this.getUsers()
     }else{
       this.router.navigate(['/login']);
     }
@@ -94,5 +94,16 @@ export class HomeComponent {
   editArticle(article:any){
     localStorage.setItem('articleToEditId',article._id);
     this.router.navigateByUrl('/editor')
+  }
+
+  likeArticle(article:any){
+    if(article.isLiked == true){
+      article.isLiked = false;
+    }else{
+      article.isLiked = true;
+    }
+    this.commonApiService.postRequest('article/likeArticle', {articleId: article._id}).subscribe((res:any)=>{
+      
+    })
   }
 }
