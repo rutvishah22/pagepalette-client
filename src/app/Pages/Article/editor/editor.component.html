@@ -1,27 +1,18 @@
-<!-- <p>editor works!</p> -->
 <app-navbar></app-navbar>
-<div *ngIf="loading" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+<div *ngIf="loading" class="flex justify-center items-center h-screen dark:bg-gray-900">
   <img src="https://aryan1982.github.io/pagepalette-client/assets/icons/spinner2.gif" alt="loader" class="h-10">
 </div>
-<div [class.invisible]="loading"  class="flex flex-col items-center">
-    <div class="mt-16 max-w-[800px]">
-      <div #editor class="mt-4"></div>
-      <div class="w-full flex justify-end mt-2">
-        <button 
-          class="bg-gray-400 hover:bg-black text-white font-bold py-2 px-4 rounded"
-          (click)="submitArticle()"
-        >
-          Submit
-        </button>
-      </div>
+<div [class.invisible]="loading" class="flex flex-col items-center dark:text-white">
+  <div class="mt-16 max-w-[800px] dark:bg-gray-800 dark:text-white">
+    <div #editor class="mt-4 quill-editor dark:bg-gray-800 dark:text-white"></div>
+    <div class="w-full flex justify-end mt-2">
+      <button 
+        class="bg-gray-400 hover:bg-black text-white font-bold py-2 px-4 rounded dark:bg-gray-700"
+        (click)="submitArticle()"
+      >
+        Submit
+      </button>
     </div>
-    <div id="editor-js"></div>
   </div>
-  
-  
- 
-
-
-<!-- Display the content -->
-
-<!-- <div id="viewer" style="height: 500px;"></div> -->
+  <div id="editor-js" class="dark:bg-gray-800 dark:text-white"></div>
+</div>

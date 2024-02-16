@@ -1,111 +1,54 @@
 <app-navbar></app-navbar>
-<div class=" flex flex-col items-center mt-16 ">
+<div class="flex flex-col items-center dark:text-white dark:bg-[#121212] bg-[#c9ced3]">
   <!-- card section -->
-  <div class="max-w-[800px] ">
+  <div class="max-w-[800px]" style="margin-top: 74px;">
     <div *ngIf="!allArticles" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-        <img src="https://aryan1982.github.io/pagepalette-client/assets/icons/spinner2.gif" alt="loader" class="h-10">
+      <img src="https://aryan1982.github.io/pagepalette-client/assets/icons/spinner2.gif" alt="loader" class="h-10">
     </div>
-    <div *ngFor="let article of allArticles; let i = index; ">
+    <div *ngFor="let article of allArticles; let i = index;">
       <!-- card -->
-      <div class="grid grid-rows-[auto_minmax(auto,_1fr)_50px]  m-3 grid-cols-3  border-blue-600 grid-flow-col rounded-lg lg:w-[800px]" style="border: 1px solid #c1c1c1;">
+      <div class="grid grid-rows-[auto_minmax(auto,_1fr)_50px] m-3 grid-cols-3 border-blue-600 grid-flow-col rounded-lg lg:w-[800px] bg-[#e7e7e7] dark:bg-[#212121] dark:border-none shadow-lg">
         <!-- <a [routerLink]="['/viewer', article._id]" routerLinkActive="active"> -->
-        <div class= "col-span-2 row-span-2 rounded-tl-lg " >
-        
-    <div class="flex flex-col h-40 justify-around p-4 max-h-40 cursor-pointer" [routerLink]="['/viewer', article._id]">
+        <div class="col-span-2 row-span-2 rounded-tl-lg">
+          <div class="flex flex-col h-40 justify-around p-4 max-h-40 cursor-pointer" [routerLink]="['/viewer', article._id]">
+            <div class="flex items-center">
+              <img *ngIf="article.user.profileImage == 'default.jpg' || !article.user.profileImage" class="w-12 h-12 rounded-full mr-2" src="https://aryan1982.github.io/pagepalette-client/assets/icons/avatar.png" alt="Avatar of User">
+              <img *ngIf="article.user.profileImage && article.user.profileImage !== 'default.jpg'" class="w-12 h-12 rounded-full mr-2" src="{{article.user.profileImage}}" alt="Avatar of User">
+              <h1 class="text-slate-500 max-sm:text-lg text-md dark:text-white">{{article.username}}</h1>
+            </div>
+            <div class="flex items-center article-title">
+              <h2 class="font-medium text-xl mt-2 max-sm:text-sm">{{article.ops[0].insert}}</h2>
+            </div>
+          </div>
+        </div>
 
-      <div class="flex items-center">
-        <img *ngIf="article.user.profileImage == 'default.jpg' || !article.user.profileImage" class="w-12 h-12 rounded-full mr-2" 
-              src="https://aryan1982.github.io/pagepalette-client/assets/icons/avatar.png" 
-              alt="Avatar of User">
-        <img *ngIf="article.user.profileImage && article.user.profileImage !== 'default.jpg'" class="w-12 h-12 rounded-full mr-2" 
-              src="{{article.user.profileImage}}" 
-              alt="Avatar of User">
-        <h1 class="text-slate-500 max-sm:text-lg text-md">{{article.username}}</h1>
-      </div>
-
-      <div class="flex items-center article-title">
-        <h2 class="font-medium text-xl mt-2 max-sm:text-sm">{{article.ops[0].insert}}</h2>
-      </div>
-  
-
-    </div>      
-    
-  </div>
-
-  <div class="pl-4 pr-4 h-full  col-span-3 flex items-center rounded-b-lg" style="border-top: 1px solid #c1c1c1;">
-    <div class="flex justify-between w-full">
-
-
-          <ul class="flex space-x-10" >
+        <div class="pl-4 pr-4 h-full col-span-3 flex items-center rounded-b-lg" style="border-top: 1px solid #c1c1c1;">
+          <div class="flex justify-between w-full">
+            <ul class="flex space-x-10">
               <i class="fa-regular fa-thumbs-up" (click)="likeArticle(article)" *ngIf="!article.isLiked"></i>
               <i class="fa-solid fa-thumbs-up text-blue-700" (click)="likeArticle(article)" *ngIf="article.isLiked"></i>
               <i class="fa-regular fa-share-from-square"></i>
               <i class="fa-regular fa-comment"></i>
-          </ul>
+            </ul>
 
-          <div class="relative ml-auto z-10" >
-            
-            <i (click)="openDropdown(article._id)" class="fas fa-ellipsis-h cursor-pointer"></i>
-        
-            
-            <div *ngIf="article._id == openedDropdownId" class="absolute right-0 w-48 bg-white border rounded-md shadow-lg">
-                
-                <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Share</a>
-                <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" *ngIf="checkUserOfArticle(article.user._id)" (click)="editArticle(article)">Edit</a>
-                <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" *ngIf="checkUserOfArticle(article.user._id)" (click)="deleteArticle(article._id)">Delete</a>
-                
-            </div>
-         </div>
-            
-          </div>
-            
-        </div>
-        
-    
-      <div class="h-full d-flex items-center row-span-2 justify-center" >
-        <div class="h-full d-flex items-center justify-center cursor-pointer" style="display: flex !important;"  [routerLink]="['/viewer', article._id]">
-     
-          <img *ngIf="firstImages[i].firstImage" class="object-cover max-h-[200px] rounded-tr-lg max-sm:mr-2 max-sm:rounded-none max-sm:shadow-md max-sm:h-[50%] sm:h-[100%]"
-          src="{{firstImages[i].firstImage || ''}}"
-          alt="..." >
-          
-        </div>
-      </div>
-      </div>
-      
-      </div>
-     
-    </div>
- 
+            <div class="relative ml-auto z-10">
+              <i (click)="openDropdown(article._id)" class="fas fa-ellipsis-h cursor-pointer"></i>
 
-    <!-- <div class=" grid-flow-col  m-3  col-start-4 w-fit">
-      <!-- Connections -->
-      <!-- <div class="flex justify-center">
-        <h1 >All Users</h1>
-      </div>
-
-
-      <div class="max-h-80 flex flex-col p-4  overflow-y-scroll" >
-        <div *ngFor="let user of allUsers">
-          <a [routerLink]="['/profile', user._id]" routerLinkActive="active">
-          <div class="inline-block bg-white rounded-lg p-2 m-2 " style="width: 300px;">
-            <div class="flex items-center">
-              <img class="w-16 h-16 rounded-full mr-4" 
-                  src="https://images.unsplash.com/photo-1694033996901-60322b8740dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" 
-                  alt="Avatar of User">
-              <div class="text-sm">
-                <p class="text-black leading-none">{{user.username}}</p>
+              <div *ngIf="article._id == openedDropdownId" class="absolute right-0 w-48 bg-white border rounded-md shadow-lg dark:bg-gray-700 dark:border-gray-500">
+                <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600" >Share</a>
+                <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600" *ngIf="checkUserOfArticle(article.user._id)" (click)="editArticle(article)">Edit</a>
+                <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600" *ngIf="checkUserOfArticle(article.user._id)" (click)="deleteArticle(article._id)">Delete</a>
               </div>
-              
             </div>
-            
-        </div></a>
-        </div> 
+          </div>
+        </div>
 
-          
-
-       </div> 
-
-
-    </div>-->
+        <div class="h-full d-flex items-center row-span-2 justify-center">
+          <div class="h-full d-flex items-center justify-center cursor-pointer" style="display: flex !important;" [routerLink]="['/viewer', article._id]">
+            <img *ngIf="firstImages[i].firstImage" class="object-cover max-h-[200px] rounded-tr-lg max-sm:mr-2 max-sm:rounded-none max-sm:shadow-md max-sm:h-[50%] sm:h-[100%]" src="{{firstImages[i].firstImage || ''}}" alt="...">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

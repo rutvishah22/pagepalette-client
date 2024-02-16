@@ -1,26 +1,25 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{html,ts}'],
+  content: ["./src/**/*.{html,ts}", "./node_modules/flowbite/**/*.js"],
   theme: {
     extend: {
       // Define default styles for <ol>
-      'ol': {
-        listStyleType: 'decimal',
-        paddingLeft: '1.5rem', // Adjust the left padding as needed
+      ol: {
+        listStyleType: "decimal",
+        paddingLeft: "1.5rem", // Adjust the left padding as needed
       },
 
       // Define default styles for <ul>
-      'ul': {
-        listStyleType: 'disc',
-        paddingLeft: '1.5rem', // Adjust the left padding as needed
+      ul: {
+        listStyleType: "disc",
+        paddingLeft: "1.5rem", // Adjust the left padding as needed
       },
 
       // Define default styles for <li>
-      'li': {
-        marginBottom: '0.5rem', // Adjust the margin between list items
+      li: {
+        marginBottom: "0.5rem", // Adjust the margin between list items
       },
     },
   },
-  plugins: [],
-}
-
+  plugins: [require("flowbite/plugin")],
+};
