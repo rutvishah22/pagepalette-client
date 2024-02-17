@@ -14,4 +14,8 @@ export class CommonService {
   setTheme(themeName:string){
     this.currentTheme = themeName;
   }
+
+  setCurrentTheme(themeName:string){
+    this.currentTheme = themeName;
+  }
 }
