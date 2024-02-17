@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CommonService } from 'src/app/services/common/common.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,8 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
   user: any;
   constructor(
-    private router:Router
+    private router:Router,
+    public commonService:CommonService
   ){}
 
 

@@ -1,18 +1,19 @@
 <app-navbar></app-navbar>
-<div *ngIf="loading" style="display: flex; justify-content: center; align-items: center; min-height: 100vh;">
+<div *ngIf="articleLoading" style="display: flex; justify-content: center; align-items: center; min-height: 100vh;" class="dark:bg-black">
     <img src="https://aryan1982.github.io/pagepalette-client/assets/icons/spinner2.gif" alt="loading" class="h-10">
 </div>
-<div *ngIf="!loading" class="w-full  flex justify-center bg-[#c9ced3]" style="min-height: 100vh; height: 100%;">
+<!-- <div *ngIf="!loading" class="w-full  flex justify-center bg-[#c9ced3]" style="min-height: 100vh; height: 100%;"> -->
+<div *ngIf="!articleLoading" class="w-full  flex justify-center bg-[#dfe6e9] dark:bg-black dark:text-white" style="min-height: 100vh; height: 100%;">
   <div class="w-full h-full flex justify-center">
     <div class="max-w-screen-md w-full p-4 mt-12">
-      <div class="profile-section grid grid-cols-[auto,1fr] gap-4 w-full ">
+      <div class="profile-section grid grid-cols-[auto,1fr] gap-4 w-full border-b dark:border-white border-black">
         <div class="min-w-max max-sm:-m-5 max-sm:mt-1 p-4 max-md:w-32 flex flex-col items-center ">
             <img class="max-md:h-20 max-md:w-20 h-40 w-40 rounded-full border-4 border-white mx-auto md:mx-0" src="{{!user.profileImage || user.profileImage == 'default.jpg' ? 'https://aryan1982.github.io/pagepalette-client/assets/icons/avatar.png' : user.profileImage  }}" alt="Profile Image">
             <!-- <img class="max-md:h-20 max-md:w-20 h-40 w-40 rounded-full border-4 border-white mx-auto md:mx-0" src="{{user.profileImage}}" alt="Profile Image"> -->
-            <button class="bg-gray-200 font-medium max-sm:text-sm px-3 py-1 w-full mt-2 rounded-md md:invisible" *ngIf="user._id == loginUser.userId " (click)="editProfile()">Edit</button>
+            <button class="bg-[#f1f1f1] dark:bg-[#212121] font-medium max-sm:text-sm px-3 py-1 w-full mt-2 rounded-md md:invisible" *ngIf="user._id == loginUser.userId " (click)="editProfile()">Edit</button>
             <button class="text-white font-medium max-sm:text-sm py-1 w-full mt-2 rounded-md md:invisible bg-blue-500" *ngIf="user._id !== loginUser.userId && !user.isFollowed" (click)="followUser(user._id)">Follow</button>
-            <button class="bg-gray-200 font-medium  max-sm:text-sm py-1 w-full mt-2 rounded-md md:invisible" *ngIf="user._id !== loginUser.userId && user.isFollowed" (click)="followUser(user._id)" >Unfollow</button>
-            <button class="bg-gray-200 font-medium  max-sm:text-sm px-3 py-1 w-full mt-2 rounded-md md:invisible" *ngIf="user._id !== loginUser.userId ">Message</button>
+            <button class="bg-[#f1f1f1] dark:bg-[#212121] font-medium  max-sm:text-sm py-1 w-full mt-2 rounded-md md:invisible" *ngIf="user._id !== loginUser.userId && user.isFollowed" (click)="followUser(user._id)" >Unfollow</button>
+            <button class="bg-[#f1f1f1] dark:bg-[#212121]  font-medium  max-sm:text-sm px-3 py-1 w-full mt-2 rounded-md md:invisible" *ngIf="user._id !== loginUser.userId ">Message</button>
 
         </div>
         <div class="w-full p-4 max-sm:pl-0 col-span-2 md:col-span-1 col-start-2 grid-rows-2 grid">
@@ -23,14 +24,14 @@
               <div class="flex">
                 <!-- <button class="bg-blue-500 text-white px-4 py-1 rounded-md max-md:invisible" *ngIf="user._id !== loginUser.userId " (click)="followUser(user._id)">Follow</button> -->
                 <button class="bg-blue-500 text-white px-4 py-1 rounded-md max-md:invisible" *ngIf="user._id !== loginUser.userId && !user.isFollowed" (click)="followUser(user._id)">Follow</button>
-                <button class="bg-gray-200 text-white px-4 py-1 rounded-md max-md:invisible" *ngIf="user._id !== loginUser.userId && user.isFollowed" (click)="followUser(user._id)" >Unfollow</button>
+                <button class="bg-[#f1f1f1] dark:bg-[#212121] text-white px-4 py-1 rounded-md max-md:invisible" *ngIf="user._id !== loginUser.userId && user.isFollowed" (click)="followUser(user._id)" >Unfollow</button>
               <button class="bg-blue-500 text-white px-4 py-1 rounded-md max-md:invisible" *ngIf="user._id == loginUser.userId " (click)="editProfile()">Edit</button>
               </div>
             </div>
             <div class="flex space-x-5 md:mt-4 max-sm:w-[80%]">
-              <span class="max-sm:text-sm text-center"><strong>Followers</strong><p>{{user.followers.length}}</p> </span>
-              <span class="max-sm:text-sm text-center"><strong>Following</strong><p>{{user.following.length}}</p> </span>
-              <span class="max-sm:text-sm text-center"><strong>Articles</strong> <p>{{allArticles.length}}</p> </span>
+              <span class="max-sm:text-sm text-center dark:font-thin"><strong>Followers</strong><p>{{user.followers.length}}</p> </span>
+              <span class="max-sm:text-sm text-center dark:font-thin"><strong>Following</strong><p>{{user.following.length}}</p> </span>
+              <span class="max-sm:text-sm text-center dark:font-thin"><strong>Articles</strong> <p>{{allArticles.length}}</p> </span>
               <!-- Add more profile details here -->
             </div>
           </div>
@@ -79,7 +80,7 @@
               <img src="https://aryan1982.github.io/pagepalette-client/assets/icons/spinner2.gif" alt="loading" class="h-10">
           </div>
           <div *ngFor="let article of allArticles; let i = index;">
-            <div class="grid grid-rows-[auto_minmax(auto,_1fr)_50px] mb-3 grid-cols-3 grid-flow-col rounded-lg w-full dark:bg-gray-800 dark:text-white border bg-[#e7e7e7] lg:w-[800px] dark:border-none shadow-lg">
+            <div class="grid grid-rows-[auto_minmax(auto,_1fr)_50px] mb-3 grid-cols-3 grid-flow-col rounded-xl w-full dark:bg-[#000] dark:shadow-[0_0_4px_0_rgba(255,255,255,0.4)] dark:text-white border bg-[#f1f1f1] lg:w-[800px] dark:border-none shadow-lg">
               <div class="col-span-2 row-span-2 rounded-tl-lg">
                 <div class="flex flex-col h-40 justify-around p-4 max-h-40 cursor-pointer" [routerLink]="['/viewer', article._id]">
                   <div class="flex items-center">

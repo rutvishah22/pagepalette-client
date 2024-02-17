@@ -1,5 +1,7 @@
 import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { initFlowbite } from 'flowbite';
+import { CommonService } from './services/common/common.service';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +14,18 @@ export class AppComponent implements OnInit, OnDestroy {
   userMessage: string = '';
   chatMessages: any[] = [];
 
-  constructor(private ngZone: NgZone) {}
+  constructor(private ngZone: NgZone,
+    private router: Router,
+    public commonService:CommonService) {}
 
   ngOnInit() {
-    initFlowbite();
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        // Reinitialize Flowbite after each route change
+        initFlowbite();
+      }
+    });
   }
-  
 
   ngOnDestroy() {
     this.eventSource.close();
